@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://room_transition"]
+
+[ext_resource type="Script" path="res://scripts/room_transition.gd" id="1_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition"]
+size = Vector2(4, 48)
+
+[node name="RoomTransition" type="Area2D"]
+monitoring = true
+monitorable = false
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_transition")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_transition")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 0.3)
+scale = Vector2(3, 3)

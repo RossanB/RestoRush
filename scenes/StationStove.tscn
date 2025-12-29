@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://stove_station"]
+
+[ext_resource type="Script" path="res://scripts/stove_station.gd" id="1_stove"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stove"]
+size = Vector2(32, 32)
+
+[node name="StoveStation" type="Area2D"]
+script = ExtResource("1_stove")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_stove")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.5, 0.3, 0.3, 0.5)
+scale = Vector2(2, 2)
+

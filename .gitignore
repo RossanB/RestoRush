@@ -1,0 +1,21 @@
+# Godot-specific ignores
+.godot/
+*.tmp
+*.import
+*.godot/
+
+# OS-specific ignores
+.DS_Store
+Thumbs.db
+
+# Editor-specific ignores
+.vscode/
+.idea/
+
+# Build artifacts
+*.exe
+*.pck
+*.zip
+
+# Logs
+*.log

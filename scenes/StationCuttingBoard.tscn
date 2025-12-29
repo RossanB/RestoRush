@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cutting_board_station"]
+
+[ext_resource type="Script" path="res://scripts/cutting_board_station.gd" id="1_cutting"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cutting"]
+size = Vector2(32, 32)
+
+[node name="CuttingBoardStation" type="Area2D"]
+script = ExtResource("1_cutting")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cutting")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.7, 0.6, 0.5)
+scale = Vector2(2, 2)
+
