@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var available_items: Array = []
 var station: Node = null
