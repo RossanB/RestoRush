@@ -101,6 +101,8 @@ func play_anim(movement):
 		elif movement == 0:
 			anim.play("side_idle")
 
+var previous_nearby_station: Node = null
+
 func check_nearby_stations():
 	var closest_station = null
 	var closest_distance = INTERACTION_DISTANCE
@@ -108,13 +110,30 @@ func check_nearby_stations():
 	# Find all stations in the scene
 	var stations = get_tree().get_nodes_in_group("stations")
 	
+	# Hide prompt on previous station
+	if previous_nearby_station != nearby_station:
+		if previous_nearby_station and previous_nearby_station.has_method("hide_interact_prompt"):
+			previous_nearby_station.hide_interact_prompt()
+	
 	for station in stations:
 		var distance = global_position.distance_to(station.global_position)
 		if distance < closest_distance:
 			closest_distance = distance
 			closest_station = station
 	
+	# Show prompt on new nearby station
+	if closest_station != nearby_station:
+		if closest_station and closest_station.has_method("show_interact_prompt"):
+			closest_station.show_interact_prompt()
+	
+	previous_nearby_station = nearby_station
 	nearby_station = closest_station
+	
+	# Hide prompt if no station nearby
+	if nearby_station == null and previous_nearby_station:
+		if previous_nearby_station.has_method("hide_interact_prompt"):
+			previous_nearby_station.hide_interact_prompt()
+		previous_nearby_station = null
 
 func interact_with_station():
 	if nearby_station == null:

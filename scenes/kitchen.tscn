@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkwispvk8fi7b"]
+[gd_scene load_steps=21 format=3 uid="uid://bkwispvk8fi7b"]
 
 [ext_resource type="Texture2D" uid="uid://dcgr3tngcmhqh" path="res://scenes/assets/environment/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_2b6py"]
 [ext_resource type="Texture2D" uid="uid://lchskfw71s7l" path="res://scenes/assets/environment/Modern tiles_Free/Interiors_free/16x16/Room_Builder_free_16x16.png" id="2_bems3"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://csl3ua22e8pyv" path="res://scenes/assets/environment/food and kitchenware icons/FOOD.png" id="4_v3ycp"]
 [ext_resource type="PackedScene" path="res://scenes/RoomTransition.tscn" id="5_transition"]
 [ext_resource type="PackedScene" uid="uid://xt7mrla0fmlm" path="res://scenes/StationCabinet.tscn" id="7_58u3k"]
+[ext_resource type="PackedScene" path="res://scenes/StationMixer.tscn" id="8_ktc20"]
+[ext_resource type="PackedScene" path="res://scenes/StationOven.tscn" id="9_bs8bs"]
+[ext_resource type="PackedScene" path="res://scenes/StationStove.tscn" id="10_88wuv"]
+[ext_resource type="PackedScene" path="res://scenes/StationFridge.tscn" id="11_acu1m"]
+[ext_resource type="PackedScene" path="res://scenes/StationCuttingBoard.tscn" id="12_87bic"]
+[ext_resource type="PackedScene" path="res://scenes/StationSink.tscn" id="13_k1cyo"]
+[ext_resource type="PackedScene" path="res://scenes/StationTrashcan.tscn" id="14_3fy06"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_2b6py")
@@ -2895,3 +2902,39 @@ position = Vector2(19.00001, 23.000004)
 
 [node name="CabinetStation" parent="." instance=ExtResource("7_58u3k")]
 position = Vector2(-93, -40)
+
+[node name="MixerStation" parent="." instance=ExtResource("8_ktc20")]
+position = Vector2(82, -38)
+
+[node name="MixerStation2" parent="." instance=ExtResource("8_ktc20")]
+position = Vector2(-47, 51)
+
+[node name="OvenStation" parent="." instance=ExtResource("9_bs8bs")]
+position = Vector2(115, -39)
+
+[node name="OvenStation2" parent="." instance=ExtResource("9_bs8bs")]
+position = Vector2(147, 56)
+
+[node name="StoveStation" parent="." instance=ExtResource("10_88wuv")]
+position = Vector2(-44, -40)
+
+[node name="StoveStation2" parent="." instance=ExtResource("10_88wuv")]
+position = Vector2(4, -40)
+
+[node name="FridgeStation" parent="." instance=ExtResource("11_acu1m")]
+position = Vector2(-77, -41)
+
+[node name="CuttingBoardStation" parent="." instance=ExtResource("12_87bic")]
+position = Vector2(-98, -13)
+
+[node name="CuttingBoardStation2" parent="." instance=ExtResource("12_87bic")]
+position = Vector2(-100, 33)
+
+[node name="SinkStation" parent="." instance=ExtResource("13_k1cyo")]
+position = Vector2(147, -41)
+
+[node name="TrashcanStation" parent="." instance=ExtResource("14_3fy06")]
+position = Vector2(-93, 6)
+
+[node name="TrashcanStation2" parent="." instance=ExtResource("14_3fy06")]
+position = Vector2(69, -25)
