@@ -81,12 +81,19 @@ func get_or_create_processing_ui():
 	return processing_ui
 
 func process_items(player: Node):
-	# Called from processing UI when "Cook" button is pressed
+	# Called from processing UI when button is pressed
 	if stored_items.is_empty() or is_cooking:
 		return
 	
+	# Debug: Print stored items
+	print("Oven stored items: ", stored_items)
+	for item in stored_items:
+		print("  - Item: ", ItemTypes.get_item_name(item), " (", item, ")")
+	
 	# Check if stored items match a recipe
 	var recipe_check = RecipeChecker.check_recipe(stored_items, "oven")
+	
+	print("Oven recipe check result: ", recipe_check)
 	
 	if not recipe_check["success"]:
 		# Recipe doesn't exist - show error
