@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://error_message"]
+
+[ext_resource type="Script" path="res://scripts/error_message.gd" id="1_error"]
+
+[node name="ErrorMessage" type="CanvasLayer"]
+script = ExtResource("1_error")
+

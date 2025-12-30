@@ -1,16 +1,17 @@
 extends StationBase
 
+var stored_items: Array[int] = []
 var is_mixing: bool = false
 var mixing_time: float = 0.0
 var mixing_duration: float = 2.0  # 2 seconds to mix
-var mixing_item: int = -1
-var mixing_result: int = -1
 var progress_bar: Control = null
+var error_ui: Node = null
 
 func _ready():
 	super._ready()
 	station_type = "mixer"
 	create_progress_bar()
+	error_ui = ErrorMessage.get_error_ui()
 
 func _process(delta):
 	if is_mixing:
@@ -35,46 +36,55 @@ func create_progress_bar():
 func interact(player: Node):
 	var held_item = player.get_held_item()
 	
-	if held_item == -1:
+	# If player has an item, place it in the mixer
+	if held_item != -1:
+		stored_items.append(held_item)
+		player.clear_item()
+		print("Item placed in mixer. Stored items: ", stored_items.size())
+		return
+	
+	# Player has no item - try to mix stored items
+	if stored_items.is_empty():
 		return
 	
 	# If already mixing, can't interact
 	if is_mixing:
 		return
 	
-	# Check if item can be mixed
-	if can_mix(held_item):
-		# Start mixing process
-		is_mixing = true
-		mixing_time = 0.0
-		mixing_item = held_item
-		mixing_result = get_mixed_result(held_item)
-		
-		# Show progress bar
-		if progress_bar:
-			progress_bar.set_label_text("Mixing...")
-			progress_bar.show_progress()
-			progress_bar.set_progress(0.0)
-		
-		# Remove item from player
-		player.clear_item()
-		
-		# Wait for mixing to complete
-		await get_tree().create_timer(mixing_duration).timeout
-		
-		# Give mixed result to player
-		if player and not player.has_item():
-			player.set_held_item(mixing_result)
-		
-		is_mixing = false
-		if progress_bar:
-			progress_bar.hide_progress()
-
-func can_mix(item: int) -> bool:
-	return item == ItemTypes.ItemType.MILK
-
-func get_mixed_result(item: int) -> int:
-	if item == ItemTypes.ItemType.MILK:
-		return ItemTypes.ItemType.ICECREAM
-	return item
-
+	# Check if stored items match a recipe
+	var recipe_check = RecipeChecker.check_recipe(stored_items, "mixer")
+	
+	if not recipe_check["success"]:
+		# Recipe doesn't exist - show error
+		if error_ui and error_ui.has_method("show_error_message"):
+			error_ui.show_error_message(recipe_check["error"])
+		else:
+			print(recipe_check["error"])
+		return
+	
+	# Recipe found - mix it
+	var result_item = recipe_check["result"]
+	
+	# Start mixing
+	is_mixing = true
+	mixing_time = 0.0
+	
+	# Show progress bar
+	if progress_bar:
+		progress_bar.set_label_text("Mixing...")
+		progress_bar.show_progress()
+		progress_bar.set_progress(0.0)
+	
+	# Clear stored items
+	stored_items.clear()
+	
+	# Wait for mixing to complete
+	await get_tree().create_timer(mixing_duration).timeout
+	
+	# Give mixed result to player
+	if player and not player.has_item():
+		player.set_held_item(result_item)
+	
+	is_mixing = false
+	if progress_bar:
+		progress_bar.hide_progress()

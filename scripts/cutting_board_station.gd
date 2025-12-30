@@ -3,21 +3,28 @@ extends StationBase
 var stored_items: Array[int] = []
 var is_processing: bool = false
 var processing_time: float = 0.0
-var processing_duration: float = 2.0  # 2 seconds to cut
-var processing_item: int = -1
-var processing_result: int = -1
+var processing_duration: float = 2.0  # 2 seconds to process
 var progress_bar: Control = null
+var error_ui: Node = null
 
 func _ready():
 	super._ready()
 	station_type = "cutting_board"
 	create_progress_bar()
+	error_ui = ErrorMessage.get_error_ui()
 
 func _process(delta):
 	if is_processing:
 		processing_time += delta
 		if progress_bar:
 			progress_bar.set_progress(processing_time)
+		
+		if processing_time >= processing_duration:
+			# Processing complete
+			is_processing = false
+			processing_time = 0.0
+			if progress_bar:
+				progress_bar.hide_progress()
 
 func create_progress_bar():
 	progress_bar = preload("res://scenes/progress_bar.tscn").instantiate()
@@ -29,126 +36,83 @@ func create_progress_bar():
 func interact(player: Node):
 	var held_item = player.get_held_item()
 	
-	if held_item == -1:
-		# Player has no item - can't do anything
+	# If player has an item, place it on the cutting board
+	if held_item != -1:
+		# Store the item
+		stored_items.append(held_item)
+		player.clear_item()
+		print("Item placed on cutting board. Stored items: ", stored_items.size())
+		return
+	
+	# Player has no item - try to process stored items
+	if stored_items.is_empty():
 		return
 	
 	# If already processing, can't interact
 	if is_processing:
 		return
 	
-	# Check if item can be chopped
-	if can_chop(held_item):
-		# Start cutting process
-		is_processing = true
-		processing_time = 0.0
-		processing_item = held_item
-		processing_result = get_chopped_result(held_item)
-		
-		# Show progress bar
-		if progress_bar:
-			progress_bar.set_label_text("Cutting...")
-			progress_bar.show_progress()
-			progress_bar.set_progress(0.0)
-		
-		# Remove item from player and start processing
-		player.clear_item()
-		
-		# Wait for processing to complete
-		await get_tree().create_timer(processing_duration).timeout
-		
-		# Give result to player
-		if player and not player.has_item():
-			player.set_held_item(processing_result)
-		
-		is_processing = false
-		if progress_bar:
-			progress_bar.hide_progress()
+	# Check if stored items match a recipe
+	var recipe_check = RecipeChecker.check_recipe(stored_items, "cutting_board")
+	
+	if not recipe_check["success"]:
+		# Recipe doesn't exist - show error
+		if error_ui and error_ui.has_method("show_error_message"):
+			error_ui.show_error_message(recipe_check["error"])
+		else:
+			print(recipe_check["error"])
 		return
 	
-	# Check if items can be mixed (dough)
-	if held_item == ItemTypes.ItemType.FLOUR:
-		# Need water to make dough
-		if stored_items.has(ItemTypes.ItemType.WATER):
-			stored_items.erase(ItemTypes.ItemType.WATER)
-			player.clear_item()
-			player.set_held_item(ItemTypes.ItemType.DOUGH)
-			return
-		else:
-			# Store flour, wait for water
-			stored_items.append(held_item)
-			player.clear_item()
-			return
+	# Recipe found - process it
+	var result_item = recipe_check["result"]
 	
-	if held_item == ItemTypes.ItemType.WATER:
-		# Check if flour is stored
-		if stored_items.has(ItemTypes.ItemType.FLOUR):
-			stored_items.erase(ItemTypes.ItemType.FLOUR)
-			player.clear_item()
-			player.set_held_item(ItemTypes.ItemType.DOUGH)
-			return
-		else:
-			# Store water, wait for flour
-			stored_items.append(held_item)
-			player.clear_item()
-			return
+	# Determine processing type based on result
+	var process_type = "Processing..."
+	if result_item == ItemTypes.ItemType.DOUGH:
+		process_type = "Mixing..."
+	elif can_chop_any_item():
+		process_type = "Cutting..."
+	elif can_assemble_any_item():
+		process_type = "Assembling..."
 	
-	# Check if items can be assembled
-	if can_assemble(held_item):
-		# Try to assemble with stored items
-		var assembly_result = try_assemble(held_item)
-		if assembly_result != -1:
-			player.clear_item()
-			player.set_held_item(assembly_result)
-			stored_items.clear()
-			return
-		else:
-			# Store item for assembly
-			stored_items.append(held_item)
-			player.clear_item()
-			return
+	# Start processing
+	is_processing = true
+	processing_time = 0.0
 	
-	# If nothing else, just store the item
-	stored_items.append(held_item)
-	player.clear_item()
+	# Show progress bar
+	if progress_bar:
+		progress_bar.set_label_text(process_type)
+		progress_bar.show_progress()
+		progress_bar.set_progress(0.0)
+	
+	# Clear stored items
+	stored_items.clear()
+	
+	# Wait for processing to complete
+	await get_tree().create_timer(processing_duration).timeout
+	
+	# Give result to player
+	if player and not player.has_item():
+		player.set_held_item(result_item)
+	
+	is_processing = false
+	if progress_bar:
+		progress_bar.hide_progress()
+
+func can_chop_any_item() -> bool:
+	for item in stored_items:
+		if can_chop(item):
+			return true
+	return false
+
+func can_assemble_any_item() -> bool:
+	for item in stored_items:
+		if can_assemble(item):
+			return true
+	return false
 
 func can_chop(item: int) -> bool:
 	return item in [ItemTypes.ItemType.LETTUCE, ItemTypes.ItemType.TOMATO, ItemTypes.ItemType.MEAT, ItemTypes.ItemType.PEPPERONI, ItemTypes.ItemType.POTATO]
 
-func get_chopped_result(item: int) -> int:
-	match item:
-		ItemTypes.ItemType.LETTUCE: return ItemTypes.ItemType.CHOPPED_LETTUCE
-		ItemTypes.ItemType.TOMATO: return ItemTypes.ItemType.CHOPPED_TOMATO
-		ItemTypes.ItemType.MEAT: return ItemTypes.ItemType.CHOPPED_MEAT
-		ItemTypes.ItemType.PEPPERONI: return ItemTypes.ItemType.CHOPPED_PEPPERONI
-		ItemTypes.ItemType.POTATO: return ItemTypes.ItemType.UNCUT_FRIES
-		_: return item
-
 func can_assemble(item: int) -> bool:
-	# Check if this item is part of any assembly recipe
 	return item in [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_LETTUCE, ItemTypes.ItemType.CHOPPED_TOMATO, ItemTypes.ItemType.CHOPPED_MEAT, ItemTypes.ItemType.CHOPPED_PEPPERONI, ItemTypes.ItemType.GLAZE]
-
-func try_assemble(item: int) -> int:
-	# Taco assembly: DOUGH + CHOPPED_LETTUCE + CHOPPED_MEAT + CHOPPED_TOMATO
-	if item == ItemTypes.ItemType.DOUGH or item == ItemTypes.ItemType.CHOPPED_LETTUCE or item == ItemTypes.ItemType.CHOPPED_MEAT or item == ItemTypes.ItemType.CHOPPED_TOMATO:
-		var items = stored_items.duplicate()
-		items.append(item)
-		if items.has(ItemTypes.ItemType.DOUGH) and items.has(ItemTypes.ItemType.CHOPPED_LETTUCE) and items.has(ItemTypes.ItemType.CHOPPED_MEAT) and items.has(ItemTypes.ItemType.CHOPPED_TOMATO):
-			return ItemTypes.ItemType.TACO
-	
-	# Pizza assembly: DOUGH + CHOPPED_PEPPERONI
-	if item == ItemTypes.ItemType.DOUGH or item == ItemTypes.ItemType.CHOPPED_PEPPERONI:
-		var items = stored_items.duplicate()
-		items.append(item)
-		if items.has(ItemTypes.ItemType.DOUGH) and items.has(ItemTypes.ItemType.CHOPPED_PEPPERONI):
-			return ItemTypes.ItemType.PIZZA
-	
-	# Donuts assembly: DOUGH + GLAZE
-	if item == ItemTypes.ItemType.DOUGH or item == ItemTypes.ItemType.GLAZE:
-		var items = stored_items.duplicate()
-		items.append(item)
-		if items.has(ItemTypes.ItemType.DOUGH) and items.has(ItemTypes.ItemType.GLAZE):
-			return ItemTypes.ItemType.DONUTS
-	
-	return -1
-
