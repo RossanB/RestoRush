@@ -16,8 +16,8 @@ func create_interact_prompt():
 	interact_prompt = Label.new()
 	interact_prompt.text = "[E]"
 	interact_prompt.add_theme_font_size_override("font_size", 8)  # Smaller pixel-style size
-	interact_prompt.add_theme_color_override("font_color", Color.WHITE)
-	interact_prompt.add_theme_color_override("font_outline_color", Color.BLACK)
+	interact_prompt.add_theme_color_override("font_color", Color(1, 1, 1, 1))  # Fully opaque white
+	interact_prompt.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))  # Fully opaque black
 	interact_prompt.add_theme_constant_override("outline_size", 1)  # Smaller outline
 	interact_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	interact_prompt.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
