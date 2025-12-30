@@ -48,6 +48,3 @@ func hide_interact_prompt():
 
 func interact(player: Node):
 	pass
-
-
-

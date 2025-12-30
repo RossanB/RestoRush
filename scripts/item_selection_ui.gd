@@ -15,7 +15,7 @@ func show_selection(items: Array, player_node: Node):
 	populate_items()
 
 func populate_items():
-	var grid = $VBoxContainer/ItemGrid
+	var grid = $Control/VBoxContainer/ItemGrid
 	
 	# Clear existing items
 	for child in grid.get_children():
@@ -25,6 +25,33 @@ func populate_items():
 	for item_type in available_items:
 		var button = Button.new()
 		button.custom_minimum_size = Vector2(80, 80)
+		# Style the button
+		var button_style = StyleBoxFlat.new()
+		button_style.bg_color = Color(0.25, 0.25, 0.3, 1)
+		button_style.border_width_left = 2
+		button_style.border_width_top = 2
+		button_style.border_width_right = 2
+		button_style.border_width_bottom = 2
+		button_style.border_color = Color(0.5, 0.4, 0.3, 1)
+		button_style.corner_radius_top_left = 3
+		button_style.corner_radius_top_right = 3
+		button_style.corner_radius_bottom_right = 3
+		button_style.corner_radius_bottom_left = 3
+		button.add_theme_stylebox_override("normal", button_style)
+		
+		var button_hover_style = StyleBoxFlat.new()
+		button_hover_style.bg_color = Color(0.35, 0.35, 0.4, 1)
+		button_hover_style.border_width_left = 2
+		button_hover_style.border_width_top = 2
+		button_hover_style.border_width_right = 2
+		button_hover_style.border_width_bottom = 2
+		button_hover_style.border_color = Color(0.8, 0.6, 0.4, 1)
+		button_hover_style.corner_radius_top_left = 3
+		button_hover_style.corner_radius_top_right = 3
+		button_hover_style.corner_radius_bottom_right = 3
+		button_hover_style.corner_radius_bottom_left = 3
+		button.add_theme_stylebox_override("hover", button_hover_style)
+		button.add_theme_stylebox_override("pressed", button_hover_style)
 		
 		# Load item texture
 		var texture_path = ItemTypes.get_item_texture_path(item_type)
@@ -34,14 +61,14 @@ func populate_items():
 			else:
 				var texture = load(texture_path)
 				if texture:
-				var texture_rect = TextureRect.new()
-				texture_rect.texture = texture
-				texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-				texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-				texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-				button.add_child(texture_rect)
-				texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-				texture_rect.set_offsets_preset(Control.PRESET_FULL_RECT)
+					var texture_rect = TextureRect.new()
+					texture_rect.texture = texture
+					texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+					texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+					texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+					button.add_child(texture_rect)
+					texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+					texture_rect.set_offsets_preset(Control.PRESET_FULL_RECT)
 		
 		# Add tooltip
 		button.tooltip_text = ItemTypes.get_item_name(item_type)
@@ -58,7 +85,7 @@ func _on_item_selected(item_type: int):
 	visible = false
 
 func _ready():
-	$VBoxContainer/CloseButton.pressed.connect(_on_close_pressed)
+	$Control/VBoxContainer/CloseButton.pressed.connect(_on_close_pressed)
 
 func _on_close_pressed():
 	visible = false
@@ -66,4 +93,3 @@ func _on_close_pressed():
 func _input(event):
 	if visible and event.is_action_pressed("ui_cancel"):
 		visible = false
-
