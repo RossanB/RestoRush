@@ -18,8 +18,8 @@ Thumbs.db
 *.pck
 *.zip
 
-# Allow .pck files in web_build for deployment
-!web_build/*.pck
+# Allow .pck files in docs folder for GitHub Pages deployment
+!docs/*.pck
 
 # Logs
 *.log
