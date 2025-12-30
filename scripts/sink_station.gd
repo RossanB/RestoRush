@@ -10,6 +10,7 @@ func interact(player: Node):
 		return
 	
 	# Give water to player
+	AudioManager.play_faucet()
 	player.set_held_item(ItemTypes.ItemType.WATER)
 
 

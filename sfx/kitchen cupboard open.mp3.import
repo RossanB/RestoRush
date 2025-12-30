@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjc3mh2cqt2b6"
+path="res://.godot/imported/kitchen cupboard open.mp3-d2678414faed8d90f2d2ed1293b4a717.mp3str"
+
+[deps]
+
+source_file="res://sfx/kitchen cupboard open.mp3"
+dest_files=["res://.godot/imported/kitchen cupboard open.mp3-d2678414faed8d90f2d2ed1293b4a717.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

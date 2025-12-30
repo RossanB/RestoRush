@@ -84,6 +84,9 @@ func process_items(player: Node):
 	is_mixing = true
 	mixing_time = 0.0
 	
+	# Play mixer sound
+	AudioManager.play_mixer()
+	
 	# Show progress bar
 	if progress_bar:
 		progress_bar.set_label_text("Mixing...")

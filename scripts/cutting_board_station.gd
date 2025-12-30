@@ -120,6 +120,10 @@ func process_items(player: Node):
 	is_processing = true
 	processing_time = 0.0
 	
+	# Play cutting sound
+	if can_chop_any_item():
+		AudioManager.play_cutting()
+	
 	# Show progress bar
 	if progress_bar:
 		progress_bar.set_label_text(process_type)

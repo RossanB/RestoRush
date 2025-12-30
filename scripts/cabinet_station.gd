@@ -19,6 +19,7 @@ func interact(player: Node):
 		return
 	
 	# Show item selection UI
+	AudioManager.play_cabinet_open()
 	var ui = get_or_create_ui()
 	if ui:
 		ui.show_selection(Recipes.CABINET_ITEMS, player)

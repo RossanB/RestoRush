@@ -6,6 +6,7 @@ const INTERACTION_DISTANCE = 30.0  # Distance to detect nearby stations
 var current_dir = "none"
 var held_item = -1  # -1 means no item (using int instead of enum for now)
 var nearby_station: Node = null
+var nearby_customer: Node = null
 
 signal item_changed(item_type)
 
@@ -22,9 +23,14 @@ func _ready():
 func _physics_process(delta):
 	player_movement(delta)
 	check_nearby_stations()
+	check_nearby_customers()
 	
 	if Input.is_action_just_pressed("interact"):
-		interact_with_station()
+		# Prioritize customer interaction if nearby
+		if nearby_customer:
+			interact_with_customer()
+		elif nearby_station:
+			interact_with_station()
 
 func player_movement(_delta):
 	# Check for WASD or arrow keys (both work)
@@ -67,7 +73,7 @@ func player_movement(_delta):
 	# Allow extra space around door areas: resto door at (-162, 50), kitchen door at (231, 1)
 	var min_x = -250  # Allow movement past -162 door
 	var max_x = 500
-	var min_y = -50
+	var min_y = -200  # Allow movement further up (was -50)
 	var max_y = 200
 	
 	global_position.x = clamp(global_position.x, min_x, max_x)
@@ -140,6 +146,21 @@ func check_nearby_stations():
 			previous_nearby_station.hide_interact_prompt()
 		previous_nearby_station = null
 
+func check_nearby_customers():
+	var closest_customer = null
+	var closest_distance = INTERACTION_DISTANCE
+	
+	# Find all customers in the scene
+	var customers = get_tree().get_nodes_in_group("customers")
+	
+	for customer in customers:
+		var distance = global_position.distance_to(customer.global_position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_customer = customer
+	
+	nearby_customer = closest_customer
+
 func interact_with_station():
 	if nearby_station == null:
 		print("No nearby station to interact with")
@@ -151,6 +172,13 @@ func interact_with_station():
 		nearby_station.interact(self)
 	else:
 		print("Station does not have interact method")
+
+func interact_with_customer():
+	if nearby_customer == null:
+		return
+	
+	if nearby_customer.has_method("interact"):
+		nearby_customer.interact(self)
 
 func set_held_item(item_type):
 	held_item = item_type

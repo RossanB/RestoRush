@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcil5urlysa4v"
+path="res://.godot/imported/FRIDGE OPEN.mp3-1d7350b24e4d759bea7bf6260cde105f.mp3str"
+
+[deps]
+
+source_file="res://sfx/FRIDGE OPEN.mp3"
+dest_files=["res://.godot/imported/FRIDGE OPEN.mp3-1d7350b24e4d759bea7bf6260cde105f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

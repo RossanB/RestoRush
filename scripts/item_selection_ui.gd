@@ -86,14 +86,29 @@ func _on_item_selected(item_type: int):
 	if player and station:
 		if station.has_method("give_item_to_player"):
 			station.give_item_to_player(player, item_type)
+		# Play close sound based on station type
+		if station.has_method("get") and station.get("station_type") == "fridge":
+			AudioManager.play_fridge_close()
+		elif station.has_method("get") and station.get("station_type") == "cabinet":
+			AudioManager.play_cabinet_close()
 	visible = false
 
 func _ready():
 	$Control/VBoxContainer/CloseButton.pressed.connect(_on_close_pressed)
 
 func _on_close_pressed():
+	# Play close sound based on station type
+	if station and station.has_method("get") and station.get("station_type") == "fridge":
+		AudioManager.play_fridge_close()
+	elif station and station.has_method("get") and station.get("station_type") == "cabinet":
+		AudioManager.play_cabinet_close()
 	visible = false
 
 func _input(event):
 	if visible and event.is_action_pressed("ui_cancel"):
+		# Play close sound based on station type
+		if station and station.has_method("get") and station.get("station_type") == "fridge":
+			AudioManager.play_fridge_close()
+		elif station and station.has_method("get") and station.get("station_type") == "cabinet":
+			AudioManager.play_cabinet_close()
 		visible = false

@@ -121,6 +121,9 @@ func process_items(player: Node):
 	is_cooking = true
 	cooking_time = 0.0
 	
+	# Play oven sound
+	AudioManager.play_oven()
+	
 	# Show progress bar
 	if progress_bar:
 		progress_bar.set_label_text(process_type)

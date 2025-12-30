@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="To Be Named"
+config/name="Restaurant Rush"
+config/description="Cook, Serve, Thrive! Master the kitchen in this fast-paced restaurant management game."
 run/main_scene="uid://o2vt8l8lhw4p"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
@@ -18,6 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerDebug="*res://scripts/player_debug.gd"
+SceneManager="*res://scripts/scene_manager.gd"
+AudioManager="*res://scripts/audio_manager.gd"
 
 [input]
 

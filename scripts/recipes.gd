@@ -31,9 +31,7 @@ static var RECIPES = {
 			{"action": "mix", "items": [ItemTypes.ItemType.FLOUR, ItemTypes.ItemType.WATER], "result": ItemTypes.ItemType.DOUGH, "station": "cutting_board"},
 			{"action": "get", "item": ItemTypes.ItemType.MEAT, "source": "fridge"},
 			{"action": "chop", "item": ItemTypes.ItemType.MEAT, "result": ItemTypes.ItemType.PEPPERONI, "station": "cutting_board"},
-			{"action": "chop", "item": ItemTypes.ItemType.PEPPERONI, "result": ItemTypes.ItemType.CHOPPED_PEPPERONI, "station": "cutting_board"},
-			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_PEPPERONI], "result": ItemTypes.ItemType.PIZZA, "station": "oven"},
-			{"action": "cook", "item": ItemTypes.ItemType.PIZZA, "result": ItemTypes.ItemType.PIZZA, "station": "oven"}
+			{"action": "cook", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.PEPPERONI], "result": ItemTypes.ItemType.PIZZA, "station": "oven"}
 		]
 	},
 	ItemTypes.ItemType.SUNNY_SIDEUP_EGG: {
@@ -64,7 +62,7 @@ static var RECIPES = {
 			{"action": "get", "item": ItemTypes.ItemType.WATER, "source": "sink"},
 			{"action": "mix", "items": [ItemTypes.ItemType.FLOUR, ItemTypes.ItemType.WATER], "result": ItemTypes.ItemType.DOUGH, "station": "cutting_board"},
 			{"action": "get", "item": ItemTypes.ItemType.GLAZE, "source": "fridge"},
-			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.GLAZE], "result": ItemTypes.ItemType.DONUTS, "station": "oven"}
+			{"action": "cook", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.GLAZE], "result": ItemTypes.ItemType.DONUTS, "station": "oven"}
 		]
 	},
 	# Standalone processing: Meat -> Pepperoni
