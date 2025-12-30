@@ -25,7 +25,7 @@ func populate_items():
 	for item_type in available_items:
 		var button = Button.new()
 		button.custom_minimum_size = Vector2(48, 48)
-awwd		# Style the button
+		# Style the button
 		var button_style = StyleBoxFlat.new()
 		button_style.bg_color = Color(0.25, 0.25, 0.3, 1)
 		button_style.border_width_left = 1
