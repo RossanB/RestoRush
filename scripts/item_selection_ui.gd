@@ -29,10 +29,11 @@ func populate_items():
 		# Load item texture
 		var texture_path = ItemTypes.get_item_texture_path(item_type)
 		if texture_path != "":
-			var texture = load(texture_path)
-			if texture == null:
-				print("Warning: Could not load texture: ", texture_path)
-			if texture:
+			if not ResourceLoader.exists(texture_path):
+				print("Warning: Texture file not found: ", texture_path, " for item: ", ItemTypes.get_item_name(item_type))
+			else:
+				var texture = load(texture_path)
+				if texture:
 				var texture_rect = TextureRect.new()
 				texture_rect.texture = texture
 				texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
