@@ -54,6 +54,7 @@ func player_movement(_delta):
 		velocity.x = 0
 		velocity.y = -SPEED
 	else:
+		# Keep current direction when idle, don't reset it
 		play_anim(0)
 		velocity.x = 0
 		velocity.y = 0
@@ -76,30 +77,34 @@ func play_anim(movement):
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
 	
+	# If no direction set yet, default to down
+	if dir == "none":
+		dir = "down"
+	
 	if dir == "right":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
 			anim.play("side_idle")
-	if dir == "left":
+	elif dir == "left":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
 			anim.play("side_idle")
-	if dir == "down":
-		anim.flip_h = true
+	elif dir == "down":
+		anim.flip_h = false
 		if movement == 1:
 			anim.play("front_walk")
 		elif movement == 0:
 			anim.play("front_idle")
-	if dir == "up":
-		anim.flip_h = true
+	elif dir == "up":
+		anim.flip_h = false
 		if movement == 1:
 			anim.play("back_walk")
 		elif movement == 0:
-			anim.play("side_idle")
+			anim.play("back_idle")
 
 var previous_nearby_station: Node = null
 
