@@ -24,32 +24,33 @@ func populate_items():
 	# Create item buttons
 	for item_type in available_items:
 		var button = Button.new()
-		button.custom_minimum_size = Vector2(50, 50)
+		button.custom_minimum_size = Vector2(16, 16)
+		button.custom_maximum_size = Vector2(16, 16)
 		# Style the button
 		var button_style = StyleBoxFlat.new()
 		button_style.bg_color = Color(0.25, 0.25, 0.3, 1)
-		button_style.border_width_left = 2
-		button_style.border_width_top = 2
-		button_style.border_width_right = 2
-		button_style.border_width_bottom = 2
+		button_style.border_width_left = 1
+		button_style.border_width_top = 1
+		button_style.border_width_right = 1
+		button_style.border_width_bottom = 1
 		button_style.border_color = Color(0.5, 0.4, 0.3, 1)
-		button_style.corner_radius_top_left = 3
-		button_style.corner_radius_top_right = 3
-		button_style.corner_radius_bottom_right = 3
-		button_style.corner_radius_bottom_left = 3
+		button_style.corner_radius_top_left = 2
+		button_style.corner_radius_top_right = 2
+		button_style.corner_radius_bottom_right = 2
+		button_style.corner_radius_bottom_left = 2
 		button.add_theme_stylebox_override("normal", button_style)
 		
 		var button_hover_style = StyleBoxFlat.new()
 		button_hover_style.bg_color = Color(0.35, 0.35, 0.4, 1)
-		button_hover_style.border_width_left = 2
-		button_hover_style.border_width_top = 2
-		button_hover_style.border_width_right = 2
-		button_hover_style.border_width_bottom = 2
+		button_hover_style.border_width_left = 1
+		button_hover_style.border_width_top = 1
+		button_hover_style.border_width_right = 1
+		button_hover_style.border_width_bottom = 1
 		button_hover_style.border_color = Color(0.8, 0.6, 0.4, 1)
-		button_hover_style.corner_radius_top_left = 3
-		button_hover_style.corner_radius_top_right = 3
-		button_hover_style.corner_radius_bottom_right = 3
-		button_hover_style.corner_radius_bottom_left = 3
+		button_hover_style.corner_radius_top_left = 2
+		button_hover_style.corner_radius_top_right = 2
+		button_hover_style.corner_radius_bottom_right = 2
+		button_hover_style.corner_radius_bottom_left = 2
 		button.add_theme_stylebox_override("hover", button_hover_style)
 		button.add_theme_stylebox_override("pressed", button_hover_style)
 		
@@ -66,12 +67,12 @@ func populate_items():
 					texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 					texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 					texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-					# Add padding so textures don't touch edges and stay within bounds
+					# Fit exactly within 16x16 with 2px padding
 					texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-					texture_rect.offset_left = 6
-					texture_rect.offset_top = 6
-					texture_rect.offset_right = -6
-					texture_rect.offset_bottom = -6
+					texture_rect.offset_left = 2
+					texture_rect.offset_top = 2
+					texture_rect.offset_right = -2
+					texture_rect.offset_bottom = -2
 					button.add_child(texture_rect)
 		
 		# Add tooltip
