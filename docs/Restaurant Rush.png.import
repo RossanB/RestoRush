@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fbpcl8cy6afh"
-path="res://.godot/imported/Restaurant Rush.png-93965edc0cb17d2c9064ac0e135983ae.ctex"
+path="res://.godot/imported/Restaurant Rush.png-136474f1532d4d19f2c79ef62d6ee534.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://web_build/Restaurant Rush.png"
-dest_files=["res://.godot/imported/Restaurant Rush.png-93965edc0cb17d2c9064ac0e135983ae.ctex"]
+source_file="res://docs/Restaurant Rush.png"
+dest_files=["res://.godot/imported/Restaurant Rush.png-136474f1532d4d19f2c79ef62d6ee534.ctex"]
 
 [params]
 
