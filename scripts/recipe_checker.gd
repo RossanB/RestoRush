@@ -26,13 +26,13 @@ static func check_recipe(stored_items: Array[int], station_type: String) -> Dict
 			elif step["action"] == "mix":
 				# Multiple items to mix
 				if step.has("items"):
-					var items_array = step["items"] as Array
+					var items_array: Array = step["items"] as Array
 					for item in items_array:
 						needed_items.append(item as int)
 			elif step["action"] == "assemble":
 				# Multiple items to assemble
 				if step.has("items"):
-					var items_array = step["items"] as Array
+					var items_array: Array = step["items"] as Array
 					for item in items_array:
 						needed_items.append(item as int)
 			elif step["action"] == "cook":
