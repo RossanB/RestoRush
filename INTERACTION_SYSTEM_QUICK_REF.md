@@ -38,6 +38,7 @@ When placing a station, make sure:
 | **Oven** | `StationOven.tscn` | Cook Taco, Pizza |
 | **Stove** | `StationStove.tscn` | Fry Fries, Eggs |
 | **Mixer** | `StationMixer.tscn` | Mix Milk → Icecream |
+| **Trashcan** | `StationTrashcan.tscn` | Discard items (throw away) |
 
 ## Quick Placement Steps
 

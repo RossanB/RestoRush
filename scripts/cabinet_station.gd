@@ -25,4 +25,3 @@ func interact(player: Node):
 
 func give_item_to_player(player: Node, item_type: int):
 	player.set_held_item(item_type)
-

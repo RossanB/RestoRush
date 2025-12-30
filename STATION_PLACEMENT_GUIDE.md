@@ -19,6 +19,7 @@ All station scenes are in `scenes/` folder:
 - `StationStove.tscn` - For frying fries and eggs
 - `StationSink.tscn` - For getting water
 - `StationMixer.tscn` - For mixing milk into icecream
+- `StationTrashcan.tscn` - For discarding items (throw away what you're holding)
 
 ## Step-by-Step: Placing a Station
 

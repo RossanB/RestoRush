@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/cutting_board_station.gd" id="1_cutting"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cutting"]
-size = Vector2(32, 32)
+size = Vector2(12, 12)
 
 [node name="CuttingBoardStation" type="Area2D"]
 script = ExtResource("1_cutting")

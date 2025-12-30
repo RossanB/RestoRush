@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
-const INTERACTION_DISTANCE = 50.0
+const INTERACTION_DISTANCE = 10.0  # Reduced from 50.0 - player must be closer to interact
 
 var current_dir = "none"
 var held_item = -1  # -1 means no item (using int instead of enum for now)

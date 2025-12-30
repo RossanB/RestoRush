@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkwispvk8fi7b"]
+[gd_scene load_steps=14 format=3 uid="uid://bkwispvk8fi7b"]
 
 [ext_resource type="Texture2D" uid="uid://dcgr3tngcmhqh" path="res://scenes/assets/environment/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_2b6py"]
 [ext_resource type="Texture2D" uid="uid://lchskfw71s7l" path="res://scenes/assets/environment/Modern tiles_Free/Interiors_free/16x16/Room_Builder_free_16x16.png" id="2_bems3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbw3u8smdjogg" path="res://scenes/Player.tscn" id="3_v3ycp"]
 [ext_resource type="Texture2D" uid="uid://csl3ua22e8pyv" path="res://scenes/assets/environment/food and kitchenware icons/FOOD.png" id="4_v3ycp"]
 [ext_resource type="PackedScene" path="res://scenes/RoomTransition.tscn" id="5_transition"]
+[ext_resource type="PackedScene" uid="uid://xt7mrla0fmlm" path="res://scenes/StationCabinet.tscn" id="7_58u3k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_2b6py")
@@ -2891,3 +2892,6 @@ shape = SubResource("RectangleShape2D_g3o0j")
 [node name="Player" parent="." instance=ExtResource("3_v3ycp")]
 z_index = 2
 position = Vector2(19.00001, 23.000004)
+
+[node name="CabinetStation" parent="." instance=ExtResource("7_58u3k")]
+position = Vector2(-93, -40)

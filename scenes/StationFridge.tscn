@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/fridge_station.gd" id="1_fridge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fridge"]
-size = Vector2(32, 32)
+size = Vector2(12, 12)
 
 [node name="FridgeStation" type="Area2D"]
 script = ExtResource("1_fridge")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cabinet_station"]
+[gd_scene load_steps=3 format=3 uid="uid://xt7mrla0fmlm"]
 
-[ext_resource type="Script" path="res://scripts/cabinet_station.gd" id="1_cabinet"]
+[ext_resource type="Script" uid="uid://bivpg8yab6h6a" path="res://scripts/cabinet_station.gd" id="1_cabinet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cabinet"]
-size = Vector2(32, 32)
+size = Vector2(12, 12)
 
 [node name="CabinetStation" type="Area2D"]
 script = ExtResource("1_cabinet")
@@ -14,6 +14,3 @@ shape = SubResource("RectangleShape2D_cabinet")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.6, 0.4, 0.2, 0.5)
 scale = Vector2(2, 2)
-
-
-

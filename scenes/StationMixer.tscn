@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/mixer_station.gd" id="1_mixer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mixer"]
-size = Vector2(32, 32)
+size = Vector2(12, 12)
 
 [node name="MixerStation" type="Area2D"]
 script = ExtResource("1_mixer")

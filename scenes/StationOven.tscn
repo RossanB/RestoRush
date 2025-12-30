@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/oven_station.gd" id="1_oven"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oven"]
-size = Vector2(32, 32)
+size = Vector2(12, 12)
 
 [node name="OvenStation" type="Area2D"]
 script = ExtResource("1_oven")
