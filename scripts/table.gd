@@ -68,8 +68,14 @@ func can_accommodate(party_size: int) -> bool:
 
 func assign_customer(customer: Node, seat_index: int = -1) -> Dictionary:
 	# Returns both position and facing direction
-	# Make sure facing directions are applied before assigning
+	# Ensure arrays are initialized before assigning
+	if seat_positions.is_empty():
+		generate_default_seat_positions()
 	if seat_facing_directions.is_empty():
+		apply_easy_edit_facing()
+	
+	# Ensure arrays are synchronized
+	if seat_positions.size() != seat_facing_directions.size():
 		apply_easy_edit_facing()
 	
 	if seat_index == -1:
@@ -117,6 +123,10 @@ func get_customers() -> Array[Node]:
 
 func get_customer_facing(customer: Node) -> String:
 	# Get the facing direction for a specific customer at this table
+	# Ensure arrays are initialized
+	if seat_facing_directions.is_empty():
+		apply_easy_edit_facing()
+	
 	var seat_index = get_customer_seat_index(customer)
 	if seat_index >= 0 and seat_index < seat_facing_directions.size():
 		return seat_facing_directions[seat_index]
@@ -149,6 +159,12 @@ func restore_table_state(state: Dictionary):
 func restore_customer(customer: Node, seat_index: int = -1):
 	# Restore customer to table without incrementing occupied_seats
 	# (since we already restored the count)
+	# Ensure arrays are initialized before accessing
+	if seat_positions.is_empty():
+		generate_default_seat_positions()
+	if seat_facing_directions.is_empty():
+		apply_easy_edit_facing()
+	
 	if customer not in customers:
 		customers.append(customer)
 		# If seat_index is specified, ensure customer is positioned at that exact seat
@@ -162,6 +178,11 @@ func restore_customer(customer: Node, seat_index: int = -1):
 				var facing_dir = seat_facing_directions[seat_index]
 				if customer.has_method("set_facing_direction"):
 					customer.set_facing_direction(facing_dir)
+			else:
+				# Fallback if facing directions array is out of sync
+				print("Table ", name, ": WARNING - seat_index ", seat_index, " out of bounds for seat_facing_directions during restore. Using default.")
+				if customer.has_method("set_facing_direction"):
+					customer.set_facing_direction("down")
 
 func apply_easy_edit_facing():
 	# Apply the easy-edit facing directions to the array
