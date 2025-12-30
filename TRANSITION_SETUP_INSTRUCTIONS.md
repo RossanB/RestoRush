@@ -51,3 +51,5 @@ The transition areas have a yellow semi-transparent sprite so you can see them. 
 - Setting the Sprite2D's `modulate` alpha to 0
 - Or removing the Sprite2D node
 
+
+

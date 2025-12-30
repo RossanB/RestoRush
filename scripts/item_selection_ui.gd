@@ -48,7 +48,7 @@ func populate_items():
 		
 		grid.add_child(button)
 
-func _on_item_selected(item_type: ItemTypes.ItemType):
+func _on_item_selected(item_type: int):
 	if player and station:
 		if station.has_method("give_item_to_player"):
 			station.give_item_to_player(player, item_type)

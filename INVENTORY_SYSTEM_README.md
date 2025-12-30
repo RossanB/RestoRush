@@ -125,3 +125,5 @@ This system implements a single-slot inventory with visual item display on the p
 - Cutting board can store multiple items temporarily for assembly
 - All stations are automatically added to the "stations" group for detection
 
+
+

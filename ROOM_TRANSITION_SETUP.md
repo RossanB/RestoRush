@@ -86,3 +86,5 @@ The transition areas have a semi-transparent yellow sprite for debugging. You ca
 - Adjust the `target_position` in the transition area's Inspector
 - Make sure coordinates are in world space, not local
 
+
+

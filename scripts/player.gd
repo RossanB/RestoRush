@@ -141,15 +141,12 @@ func update_held_item_display():
 	if held_item == -1:
 		sprite.visible = false
 	else:
-		# Item display functionality (can be re-enabled when ItemTypes is restored)
-		sprite.visible = false  # Hide for now since ItemTypes is not available
-		# When ItemTypes is available, uncomment below:
-		# sprite.visible = true
-		# var texture_path = ItemTypes.get_item_texture_path(held_item)
-		# if texture_path != "":
-		# 	var texture = load(texture_path)
-		# 	if texture:
-		# 		sprite.texture = texture
-		# 		sprite.position = Vector2(0, -25)
-		# 		sprite.z_index = 10
+		sprite.visible = true
+		var texture_path = ItemTypes.get_item_texture_path(held_item)
+		if texture_path != "":
+			var texture = load(texture_path)
+			if texture:
+				sprite.texture = texture
+				sprite.position = Vector2(0, -25)
+				sprite.z_index = 10
 			

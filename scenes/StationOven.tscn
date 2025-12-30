@@ -15,3 +15,5 @@ shape = SubResource("RectangleShape2D_oven")
 modulate = Color(0.4, 0.4, 0.4, 0.5)
 scale = Vector2(2, 2)
 
+
+

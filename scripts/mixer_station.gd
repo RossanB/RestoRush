@@ -3,8 +3,8 @@ extends StationBase
 var is_mixing: bool = false
 var mixing_time: float = 0.0
 var mixing_duration: float = 2.0  # 2 seconds to mix
-var mixing_item: ItemTypes.ItemType = -1
-var mixing_result: ItemTypes.ItemType = -1
+var mixing_item: int = -1
+var mixing_result: int = -1
 var progress_bar: Control = null
 
 func _ready():
@@ -70,10 +70,10 @@ func interact(player: Node):
 		if progress_bar:
 			progress_bar.hide_progress()
 
-func can_mix(item: ItemTypes.ItemType) -> bool:
+func can_mix(item: int) -> bool:
 	return item == ItemTypes.ItemType.MILK
 
-func get_mixed_result(item: ItemTypes.ItemType) -> ItemTypes.ItemType:
+func get_mixed_result(item: int) -> int:
 	if item == ItemTypes.ItemType.MILK:
 		return ItemTypes.ItemType.ICECREAM
 	return item

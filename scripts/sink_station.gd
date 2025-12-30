@@ -12,3 +12,5 @@ func interact(player: Node):
 	# Give water to player
 	player.set_held_item(ItemTypes.ItemType.WATER)
 
+
+

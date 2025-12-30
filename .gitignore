@@ -1,7 +1,8 @@
 # Godot-specific ignores
 .godot/
 *.tmp
-*.import
+# *.import files should be committed for collaboration
+# *.import
 *.godot/
 
 # OS-specific ignores

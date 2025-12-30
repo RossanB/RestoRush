@@ -1,7 +1,7 @@
 extends StationBase
 
 var item_selection_ui: Control = null
-var freezing_items: Dictionary = {}  # item_id -> {time: float, duration: float, result: ItemTypes.ItemType}
+var freezing_items: Dictionary = {}  # item_id -> {time: float, duration: float, result: int}
 var progress_bar: Control = null
 
 func _ready():
@@ -84,6 +84,6 @@ func interact(player: Node):
 	if ui:
 		ui.show_selection(Recipes.FRIDGE_ITEMS, player)
 
-func give_item_to_player(player: Node, item_type: ItemTypes.ItemType):
+func give_item_to_player(player: Node, item_type: int):
 	player.set_held_item(item_type)
 

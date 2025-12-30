@@ -34,3 +34,5 @@ func hide_progress():
 	progress = 0.0
 	update_display()
 
+
+

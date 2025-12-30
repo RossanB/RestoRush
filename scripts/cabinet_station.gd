@@ -23,6 +23,6 @@ func interact(player: Node):
 	if ui:
 		ui.show_selection(Recipes.CABINET_ITEMS, player)
 
-func give_item_to_player(player: Node, item_type: ItemTypes.ItemType):
+func give_item_to_player(player: Node, item_type: int):
 	player.set_held_item(item_type)
 

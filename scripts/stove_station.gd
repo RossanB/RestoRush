@@ -3,8 +3,8 @@ extends StationBase
 var is_cooking: bool = false
 var cooking_time: float = 0.0
 var cooking_duration: float = 2.5  # 2.5 seconds to fry
-var cooking_item: ItemTypes.ItemType = -1
-var cooking_result: ItemTypes.ItemType = -1
+var cooking_item: int = -1
+var cooking_result: int = -1
 var progress_bar: Control = null
 
 func _ready():
@@ -70,10 +70,10 @@ func interact(player: Node):
 		if progress_bar:
 			progress_bar.hide_progress()
 
-func can_cook_on_stove(item: ItemTypes.ItemType) -> bool:
+func can_cook_on_stove(item: int) -> bool:
 	return item in [ItemTypes.ItemType.UNCUT_FRIES, ItemTypes.ItemType.EGG]
 
-func get_cooked_result(item: ItemTypes.ItemType) -> ItemTypes.ItemType:
+func get_cooked_result(item: int) -> int:
 	match item:
 		ItemTypes.ItemType.UNCUT_FRIES: return ItemTypes.ItemType.FRIES
 		ItemTypes.ItemType.EGG: return ItemTypes.ItemType.SUNNY_SIDEUP_EGG

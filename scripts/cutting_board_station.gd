@@ -1,11 +1,11 @@
 extends StationBase
 
-var stored_items: Array[ItemTypes.ItemType] = []
+var stored_items: Array[int] = []
 var is_processing: bool = false
 var processing_time: float = 0.0
 var processing_duration: float = 2.0  # 2 seconds to cut
-var processing_item: ItemTypes.ItemType = -1
-var processing_result: ItemTypes.ItemType = -1
+var processing_item: int = -1
+var processing_result: int = -1
 var progress_bar: Control = null
 
 func _ready():
@@ -112,10 +112,10 @@ func interact(player: Node):
 	stored_items.append(held_item)
 	player.clear_item()
 
-func can_chop(item: ItemTypes.ItemType) -> bool:
+func can_chop(item: int) -> bool:
 	return item in [ItemTypes.ItemType.LETTUCE, ItemTypes.ItemType.TOMATO, ItemTypes.ItemType.MEAT, ItemTypes.ItemType.PEPPERONI, ItemTypes.ItemType.POTATO]
 
-func get_chopped_result(item: ItemTypes.ItemType) -> ItemTypes.ItemType:
+func get_chopped_result(item: int) -> int:
 	match item:
 		ItemTypes.ItemType.LETTUCE: return ItemTypes.ItemType.CHOPPED_LETTUCE
 		ItemTypes.ItemType.TOMATO: return ItemTypes.ItemType.CHOPPED_TOMATO
@@ -124,11 +124,11 @@ func get_chopped_result(item: ItemTypes.ItemType) -> ItemTypes.ItemType:
 		ItemTypes.ItemType.POTATO: return ItemTypes.ItemType.UNCUT_FRIES
 		_: return item
 
-func can_assemble(item: ItemTypes.ItemType) -> bool:
+func can_assemble(item: int) -> bool:
 	# Check if this item is part of any assembly recipe
 	return item in [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_LETTUCE, ItemTypes.ItemType.CHOPPED_TOMATO, ItemTypes.ItemType.CHOPPED_MEAT, ItemTypes.ItemType.CHOPPED_PEPPERONI, ItemTypes.ItemType.GLAZE]
 
-func try_assemble(item: ItemTypes.ItemType) -> ItemTypes.ItemType:
+func try_assemble(item: int) -> int:
 	# Taco assembly: DOUGH + CHOPPED_LETTUCE + CHOPPED_MEAT + CHOPPED_TOMATO
 	if item == ItemTypes.ItemType.DOUGH or item == ItemTypes.ItemType.CHOPPED_LETTUCE or item == ItemTypes.ItemType.CHOPPED_MEAT or item == ItemTypes.ItemType.CHOPPED_TOMATO:
 		var items = stored_items.duplicate()

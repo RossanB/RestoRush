@@ -17,3 +17,5 @@ func _on_body_exited(body):
 func interact(player: Node):
 	pass
 
+
+

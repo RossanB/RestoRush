@@ -3,8 +3,8 @@ extends StationBase
 var is_cooking: bool = false
 var cooking_time: float = 0.0
 var cooking_duration: float = 3.0  # 3 seconds to cook
-var cooking_item: ItemTypes.ItemType = -1
-var cooking_result: ItemTypes.ItemType = -1
+var cooking_item: int = -1
+var cooking_result: int = -1
 var progress_bar: Control = null
 
 func _ready():
@@ -70,10 +70,10 @@ func interact(player: Node):
 		if progress_bar:
 			progress_bar.hide_progress()
 
-func can_cook_in_oven(item: ItemTypes.ItemType) -> bool:
+func can_cook_in_oven(item: int) -> bool:
 	return item in [ItemTypes.ItemType.TACO, ItemTypes.ItemType.PIZZA]
 
-func get_cooked_result(item: ItemTypes.ItemType) -> ItemTypes.ItemType:
+func get_cooked_result(item: int) -> int:
 	# Oven cooking doesn't change the item type, just "cooks" it
 	return item
 
