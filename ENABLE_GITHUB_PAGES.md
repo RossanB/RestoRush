@@ -1,11 +1,11 @@
 GITHUB PAGES ENABLED - FINAL STEPS
 
-Your files have been successfully pushed to:
-https://github.com/RossanB/RestoRushWeb
+Your files have been successfully pushed to your original repository:
+https://github.com/RossanB/RestoRush
 
 NOW ENABLE GITHUB PAGES:
 
-1. Go to: https://github.com/RossanB/RestoRushWeb
+1. Go to: https://github.com/RossanB/RestoRush
 2. Click the "Settings" tab (top right of the repository page)
 3. Scroll down and click "Pages" in the left sidebar
 4. Under "Source", select:
@@ -15,7 +15,7 @@ NOW ENABLE GITHUB PAGES:
 6. Wait 1-2 minutes for GitHub to build your site
 
 YOUR GAME WILL BE LIVE AT:
-https://rossanb.github.io/RestoRushWeb/
+https://rossanb.github.io/RestoRush/
 
 Note: It may take 2-3 minutes after enabling Pages for the site to be available.
 
@@ -32,6 +32,5 @@ If game doesn't load:
 - Try Chrome or Firefox browser
 
 Large file warning:
-- You have a 75MB audio file - GitHub allows up to 100MB, so it's fine
+- You have a 83.80MB .pck file - GitHub allows up to 100MB, so it's fine
 - If you want to optimize later, you can compress the audio file
-
