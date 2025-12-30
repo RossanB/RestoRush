@@ -30,6 +30,8 @@ func populate_items():
 		var texture_path = ItemTypes.get_item_texture_path(item_type)
 		if texture_path != "":
 			var texture = load(texture_path)
+			if texture == null:
+				print("Warning: Could not load texture: ", texture_path)
 			if texture:
 				var texture_rect = TextureRect.new()
 				texture_rect.texture = texture

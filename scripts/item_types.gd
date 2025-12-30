@@ -70,24 +70,24 @@ static var ITEM_TEXTURES = {
 	ItemType.LETTUCE: "res://assets/environment/ingredients/lettuce.png",
 	ItemType.TOMATO: "res://assets/environment/ingredients/tomato.png",
 	ItemType.MEAT: "res://assets/environment/ingredients/meat.png",
-	ItemType.PEPPERONI: "res://assets/environment/ingredients/pepperoni.png",
+	ItemType.PEPPERONI: "res://assets/environment/ingredients/peperonni.png",  # Note: filename has double 'n'
 	ItemType.POTATO: "res://assets/environment/ingredients/potato.png",
 	ItemType.EGG: "res://assets/environment/ingredients/egg.png",
 	ItemType.MILK: "res://assets/environment/ingredients/milk.png",
 	ItemType.COLA: "res://assets/environment/ingredients/cola.png",
-	ItemType.FRUIT: "res://assets/environment/ingredients/fruit.png",
+	ItemType.FRUIT: "res://assets/environment/ingredients/orange_juice.png",  # Using orange_juice as fruit
 	ItemType.GLAZE: "res://assets/environment/ingredients/glaze.png",
 	ItemType.CHOPPED_LETTUCE: "res://assets/environment/ingredients/chopped_lettuce.png",
 	ItemType.CHOPPED_TOMATO: "res://assets/environment/ingredients/chopped_tomato.png",
 	ItemType.CHOPPED_MEAT: "res://assets/environment/ingredients/chopped_meat.png",
 	ItemType.CHOPPED_PEPPERONI: "res://assets/environment/ingredients/chopped_pepperoni.png",
-	ItemType.UNCUT_FRIES: "res://assets/environment/ingredients/uncut_fries.png",
+	ItemType.UNCUT_FRIES: "res://assets/environment/ingredients/uncooked_fries.png",
 	ItemType.TACO: "res://assets/environment/ingredients/taco.png",
 	ItemType.PIZZA: "res://assets/environment/ingredients/pizza.png",
 	ItemType.FRIES: "res://assets/environment/ingredients/fries.png",
-	ItemType.SUNNY_SIDEUP_EGG: "res://assets/environment/ingredients/sunny_sideup_egg.png",
+	ItemType.SUNNY_SIDEUP_EGG: "res://assets/environment/ingredients/fried_egg.png",
 	ItemType.ICECREAM: "res://assets/environment/ingredients/icecream.png",
-	ItemType.DONUTS: "res://assets/environment/ingredients/donuts.png"
+	ItemType.DONUTS: "res://assets/environment/ingredients/donut.png"  # Note: filename is singular
 }
 
 static func get_item_name(item_type: int) -> String:
