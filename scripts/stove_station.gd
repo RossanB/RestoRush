@@ -50,9 +50,29 @@ func interact(player: Node):
 	if is_cooking:
 		return
 	
+	# Determine button text based on what action will be performed
+	var button_text = "Fry"
+	var recipe_check = RecipeChecker.check_recipe(stored_items, "stove")
+	if recipe_check["success"]:
+		# Check if it's an assemble action by looking at recipes
+		for recipe_result in Recipes.RECIPES.keys():
+			var recipe = Recipes.RECIPES[recipe_result]
+			for step in recipe["steps"]:
+				if step.has("station") and step["station"] == "stove" and step.has("action"):
+					if step["action"] == "assemble":
+						# Check if stored items match this assemble step
+						if step.has("items"):
+							var items_array: Array = step["items"] as Array
+							var needed_items: Array[int] = []
+							for item in items_array:
+								needed_items.append(item as int)
+							if RecipeChecker.items_match(stored_items, needed_items):
+								button_text = "Assemble"
+								break
+	
 	# Show processing UI
 	get_or_create_processing_ui()
-	processing_ui.show_processing(stored_items, self, player, "Fry")
+	processing_ui.show_processing(stored_items, self, player, button_text)
 
 func get_or_create_processing_ui():
 	if not processing_ui:
@@ -73,16 +93,26 @@ func process_items(player: Node):
 		ErrorMessage.show_error(recipe_check["error"])
 		return
 	
-	# Recipe found - cook it
+	# Recipe found - process it (could be cook or assemble)
 	var result_item = recipe_check["result"]
 	
-	# Start cooking
+	# Determine process type
+	var process_type = "Frying..."
+	for recipe_result in Recipes.RECIPES.keys():
+		var recipe = Recipes.RECIPES[recipe_result]
+		for step in recipe["steps"]:
+			if step.has("station") and step["station"] == "stove" and step.get("result", -1) == result_item:
+				if step.has("action") and step["action"] == "assemble":
+					process_type = "Assembling..."
+					break
+	
+	# Start processing
 	is_cooking = true
 	cooking_time = 0.0
 	
 	# Show progress bar
 	if progress_bar:
-		progress_bar.set_label_text("Frying...")
+		progress_bar.set_label_text(process_type)
 		progress_bar.show_progress()
 		progress_bar.set_progress(0.0)
 	

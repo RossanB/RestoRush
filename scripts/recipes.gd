@@ -15,7 +15,7 @@ static var RECIPES = {
 			{"action": "chop", "item": ItemTypes.ItemType.PEPPERONI, "result": ItemTypes.ItemType.CHOPPED_MEAT, "station": "cutting_board"},
 			{"action": "get", "item": ItemTypes.ItemType.TOMATO, "source": "cabinet"},
 			{"action": "chop", "item": ItemTypes.ItemType.TOMATO, "result": ItemTypes.ItemType.CHOPPED_TOMATO, "station": "cutting_board"},
-			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_LETTUCE, ItemTypes.ItemType.CHOPPED_MEAT, ItemTypes.ItemType.CHOPPED_TOMATO], "result": ItemTypes.ItemType.TACO, "station": "cutting_board"},
+			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_LETTUCE, ItemTypes.ItemType.CHOPPED_MEAT, ItemTypes.ItemType.CHOPPED_TOMATO], "result": ItemTypes.ItemType.TACO, "station": "stove"},
 			{"action": "cook", "item": ItemTypes.ItemType.TACO, "result": ItemTypes.ItemType.TACO, "station": "oven"}
 		]
 	},
@@ -34,7 +34,7 @@ static var RECIPES = {
 			{"action": "get", "item": ItemTypes.ItemType.MEAT, "source": "fridge"},
 			{"action": "chop", "item": ItemTypes.ItemType.MEAT, "result": ItemTypes.ItemType.PEPPERONI, "station": "cutting_board"},
 			{"action": "chop", "item": ItemTypes.ItemType.PEPPERONI, "result": ItemTypes.ItemType.CHOPPED_PEPPERONI, "station": "cutting_board"},
-			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_PEPPERONI], "result": ItemTypes.ItemType.PIZZA, "station": "cutting_board"},
+			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_PEPPERONI], "result": ItemTypes.ItemType.PIZZA, "station": "oven"},
 			{"action": "cook", "item": ItemTypes.ItemType.PIZZA, "result": ItemTypes.ItemType.PIZZA, "station": "oven"}
 		]
 	},
@@ -67,7 +67,7 @@ static var RECIPES = {
 			{"action": "get", "item": ItemTypes.ItemType.WATER, "source": "sink"},
 			{"action": "mix", "items": [ItemTypes.ItemType.FLOUR, ItemTypes.ItemType.WATER], "result": ItemTypes.ItemType.DOUGH, "station": "cutting_board"},
 			{"action": "get", "item": ItemTypes.ItemType.GLAZE, "source": "fridge"},
-			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.GLAZE], "result": ItemTypes.ItemType.DONUTS, "station": "cutting_board"}
+			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.GLAZE], "result": ItemTypes.ItemType.DONUTS, "station": "oven"}
 		]
 	},
 	# Standalone processing: Meat -> Pepperoni
