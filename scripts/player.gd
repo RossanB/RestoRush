@@ -27,22 +27,28 @@ func _physics_process(delta):
 		interact_with_station()
 
 func player_movement(_delta):
-	if Input.is_action_pressed("ui_right"):
+	# Check for WASD or arrow keys (both work)
+	var right = Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D)
+	var left = Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A)
+	var down = Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S)
+	var up = Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W)
+	
+	if right:
 		current_dir = "right"
 		play_anim(1)
 		velocity.x = SPEED
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_left"):
+	elif left:
 		current_dir = "left"
 		play_anim(1)
 		velocity.x = -SPEED
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_down"):
+	elif down:
 		current_dir = "down"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = +SPEED
-	elif Input.is_action_pressed("ui_up"):
+	elif up:
 		current_dir = "up"
 		play_anim(1)
 		velocity.x = 0
