@@ -45,8 +45,7 @@ static var RECIPES = {
 	ItemTypes.ItemType.ICECREAM: {
 		"steps": [
 			{"action": "get", "item": ItemTypes.ItemType.MILK, "source": "fridge"},
-			{"action": "mix", "items": [ItemTypes.ItemType.MILK], "result": ItemTypes.ItemType.ICECREAM, "station": "mixer"},
-			{"action": "store", "item": ItemTypes.ItemType.ICECREAM, "station": "fridge"}
+			{"action": "mix", "items": [ItemTypes.ItemType.MILK], "result": ItemTypes.ItemType.ICECREAM, "station": "mixer"}
 		]
 	},
 	ItemTypes.ItemType.COLA: {
