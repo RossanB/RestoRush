@@ -145,7 +145,7 @@ func create_remove_button():
 	
 	# Insert before CloseButton
 	var close_button = $Control/VBoxContainer/CloseButton
-	var close_index = vbox.get_child_index(close_button)
+	var close_index = close_button.get_index()
 	vbox.add_child(remove_button)
 	vbox.move_child(remove_button, close_index)
 	remove_button.pressed.connect(_on_remove_pressed)
