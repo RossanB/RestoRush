@@ -153,16 +153,16 @@ func create_remove_button():
 	remove_button.visible = false
 
 func _on_remove_pressed():
-	if selected_item_index >= 0 and selected_item_index < stored_items.size() and player:
+	if selected_item_index >= 0 and selected_item_index < stored_items.size() and player and station:
 		var item_to_remove = stored_items[selected_item_index]
 		# Give item back to player
 		if not player.has_item():
 			player.set_held_item(item_to_remove)
-			# Remove from stored items
+			# Remove from station's stored items directly (arrays are passed by reference, but be explicit)
+			if "stored_items" in station:
+				station.stored_items.remove_at(selected_item_index)
+			# Update local stored_items to match
 			stored_items.remove_at(selected_item_index)
-			# Update station's stored items
-			if station and station.has("stored_items"):
-				station.stored_items = stored_items.duplicate()
 			# Refresh UI
 			populate_items()
 
