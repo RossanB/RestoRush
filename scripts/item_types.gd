@@ -79,8 +79,8 @@ static var ITEM_TEXTURES = {
 	ItemType.GLAZE: "res://assets/environment/ingredients/glaze.png",
 	ItemType.CHOPPED_LETTUCE: "res://assets/environment/ingredients/chopped_lettuce.png",
 	ItemType.CHOPPED_TOMATO: "res://assets/environment/ingredients/chopped_tomato.png",
-	ItemType.CHOPPED_MEAT: "res://assets/environment/ingredients/chopped_meat.png",
-	ItemType.CHOPPED_PEPPERONI: "res://assets/environment/ingredients/chopped_pepperoni.png",
+	ItemType.CHOPPED_MEAT: "res://assets/environment/ingredients/meat.png",  # Using regular meat as fallback
+	ItemType.CHOPPED_PEPPERONI: "res://assets/environment/ingredients/peperonni.png",  # Using regular pepperoni as fallback
 	ItemType.UNCUT_FRIES: "res://assets/environment/ingredients/uncooked_fries.png",
 	ItemType.TACO: "res://assets/environment/ingredients/taco.png",
 	ItemType.PIZZA: "res://assets/environment/ingredients/pizza.png",
