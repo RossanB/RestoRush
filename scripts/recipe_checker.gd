@@ -43,6 +43,7 @@ static func check_recipe(stored_items: Array[int], station_type: String) -> Dict
 			if items_match(stored_items, needed_items):
 				var result = step.get("result", -1)
 				if result != -1:
+					print("Recipe matched! Action: ", step["action"], " Result: ", result)
 					return {"success": true, "result": result, "error": ""}
 	
 	# No recipe found
