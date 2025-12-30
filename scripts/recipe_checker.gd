@@ -46,7 +46,24 @@ static func check_recipe(stored_items: Array[int], station_type: String) -> Dict
 					print("Recipe matched! Action: ", step["action"], " Result: ", result)
 					return {"success": true, "result": result, "error": ""}
 	
-	# No recipe found
+	# No recipe found - check if items match a recipe at a different station
+	var possible_stations = []
+	for recipe_result in Recipes.RECIPES.keys():
+		var recipe = Recipes.RECIPES[recipe_result]
+		for step in recipe["steps"]:
+			if step.has("station") and step.has("action") and step["action"] == "assemble":
+				if step.has("items"):
+					var items_array: Array = step["items"] as Array
+					var needed_items: Array[int] = []
+					for item in items_array:
+						needed_items.append(item as int)
+					if items_match(stored_items, needed_items):
+						if step["station"] not in possible_stations:
+							possible_stations.append(step["station"])
+	
+	if possible_stations.size() > 0:
+		return {"success": false, "result": -1, "error": "Recipe exists but wrong station! Try: " + possible_stations[0]}
+	
 	return {"success": false, "result": -1, "error": "Recipe does not exist!"}
 
 # Check if stored items match needed items (order doesn't matter, counts matter)
