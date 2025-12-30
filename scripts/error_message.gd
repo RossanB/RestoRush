@@ -19,6 +19,7 @@ func _ready():
 	var control = Control.new()
 	control.anchor_right = 1.0
 	control.anchor_bottom = 1.0
+	control.mouse_filter = Control.MOUSE_FILTER_IGNORE  # Don't block mouse input
 	add_child(control)
 	
 	error_label.anchors_preset = Control.PRESET_TOP_WIDE

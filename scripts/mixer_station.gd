@@ -69,12 +69,16 @@ func process_items(player: Node):
 	var recipe_check = RecipeChecker.check_recipe(stored_items, "mixer")
 	
 	if not recipe_check["success"]:
-		# Recipe doesn't exist - show error
+		# Recipe doesn't exist - show error but keep UI open
 		ErrorMessage.show_error(recipe_check["error"])
 		return
 	
 	# Recipe found - mix it
 	var result_item = recipe_check["result"]
+	
+	# Close processing UI now that we're starting to process
+	if processing_ui:
+		processing_ui.visible = false
 	
 	# Start mixing
 	is_mixing = true

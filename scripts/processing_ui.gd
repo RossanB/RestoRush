@@ -167,8 +167,10 @@ func _on_remove_pressed():
 
 func _on_process_pressed():
 	if station and station.has_method("process_items"):
+		# Don't close UI yet - let process_items handle it
+		# If there's an error, we want to keep the UI open so user can fix it
 		station.process_items(player)
-	visible = false
+		# Only close if processing started successfully (will be handled by station)
 
 func _ready():
 	$Control/VBoxContainer/ProcessButton.pressed.connect(_on_process_pressed)

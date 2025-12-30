@@ -96,7 +96,7 @@ func process_items(player: Node):
 	print("Oven recipe check result: ", recipe_check)
 	
 	if not recipe_check["success"]:
-		# Recipe doesn't exist - show error
+		# Recipe doesn't exist - show error but keep UI open
 		ErrorMessage.show_error(recipe_check["error"])
 		return
 	
@@ -112,6 +112,10 @@ func process_items(player: Node):
 				if step.has("action") and step["action"] == "assemble":
 					process_type = "Assembling..."
 					break
+	
+	# Close processing UI now that we're starting to process
+	if processing_ui:
+		processing_ui.visible = false
 	
 	# Start processing
 	is_cooking = true
