@@ -30,7 +30,8 @@ static var RECIPES = {
 			{"action": "get", "item": ItemTypes.ItemType.FLOUR, "source": "cabinet"},
 			{"action": "get", "item": ItemTypes.ItemType.WATER, "source": "sink"},
 			{"action": "mix", "items": [ItemTypes.ItemType.FLOUR, ItemTypes.ItemType.WATER], "result": ItemTypes.ItemType.DOUGH, "station": "cutting_board"},
-			{"action": "get", "item": ItemTypes.ItemType.PEPPERONI, "source": "fridge"},
+			{"action": "get", "item": ItemTypes.ItemType.MEAT, "source": "fridge"},
+			{"action": "chop", "item": ItemTypes.ItemType.MEAT, "result": ItemTypes.ItemType.PEPPERONI, "station": "cutting_board"},
 			{"action": "chop", "item": ItemTypes.ItemType.PEPPERONI, "result": ItemTypes.ItemType.CHOPPED_PEPPERONI, "station": "cutting_board"},
 			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_PEPPERONI], "result": ItemTypes.ItemType.PIZZA, "station": "cutting_board"},
 			{"action": "cook", "item": ItemTypes.ItemType.PIZZA, "result": ItemTypes.ItemType.PIZZA, "station": "oven"}
@@ -67,6 +68,13 @@ static var RECIPES = {
 			{"action": "get", "item": ItemTypes.ItemType.GLAZE, "source": "fridge"},
 			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.GLAZE], "result": ItemTypes.ItemType.DONUTS, "station": "cutting_board"}
 		]
+	},
+	# Standalone processing: Meat -> Pepperoni
+	ItemTypes.ItemType.PEPPERONI: {
+		"steps": [
+			{"action": "get", "item": ItemTypes.ItemType.MEAT, "source": "fridge"},
+			{"action": "chop", "item": ItemTypes.ItemType.MEAT, "result": ItemTypes.ItemType.PEPPERONI, "station": "cutting_board"}
+		]
 	}
 }
 
@@ -77,7 +85,6 @@ static var FRIDGE_ITEMS = [
 	ItemTypes.ItemType.MILK,
 	ItemTypes.ItemType.COLA,
 	ItemTypes.ItemType.FRUIT,
-	ItemTypes.ItemType.PEPPERONI,
 	ItemTypes.ItemType.GLAZE
 ]
 
