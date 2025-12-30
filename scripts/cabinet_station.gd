@@ -1,6 +1,6 @@
 extends StationBase
 
-var item_selection_ui: Control = null
+var item_selection_ui: CanvasLayer = null
 
 func _ready():
 	super._ready()

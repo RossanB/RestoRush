@@ -1,6 +1,6 @@
 extends StationBase
 
-var item_selection_ui: Control = null
+var item_selection_ui: CanvasLayer = null
 var freezing_items: Dictionary = {}  # item_id -> {time: float, duration: float, result: int}
 var progress_bar: Control = null
 
