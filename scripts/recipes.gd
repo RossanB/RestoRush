@@ -14,7 +14,7 @@ static var RECIPES = {
 			{"action": "chop", "item": ItemTypes.ItemType.MEAT, "result": ItemTypes.ItemType.PEPPERONI, "station": "cutting_board"},
 			{"action": "get", "item": ItemTypes.ItemType.TOMATO, "source": "cabinet"},
 			{"action": "chop", "item": ItemTypes.ItemType.TOMATO, "result": ItemTypes.ItemType.CHOPPED_TOMATO, "station": "cutting_board"},
-			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_LETTUCE, ItemTypes.ItemType.PEPPERONI, ItemTypes.ItemType.CHOPPED_TOMATO], "result": ItemTypes.ItemType.TACO, "station": "stove"},
+			{"action": "assemble", "items": [ItemTypes.ItemType.DOUGH, ItemTypes.ItemType.CHOPPED_LETTUCE, ItemTypes.ItemType.PEPPERONI, ItemTypes.ItemType.CHOPPED_TOMATO], "result": ItemTypes.ItemType.TACO, "station": "oven"},
 			{"action": "cook", "item": ItemTypes.ItemType.TACO, "result": ItemTypes.ItemType.TACO, "station": "oven"}
 		]
 	},
