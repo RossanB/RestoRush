@@ -66,13 +66,12 @@ func populate_items():
 					texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 					texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 					texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-					# Add padding so textures don't touch edges
+					# Add padding so textures don't touch edges and stay within bounds
 					texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-					texture_rect.set_offsets_preset(Control.PRESET_FULL_RECT)
-					texture_rect.offset_left = 4
-					texture_rect.offset_top = 4
-					texture_rect.offset_right = -4
-					texture_rect.offset_bottom = -4
+					texture_rect.offset_left = 6
+					texture_rect.offset_top = 6
+					texture_rect.offset_right = -6
+					texture_rect.offset_bottom = -6
 					button.add_child(texture_rect)
 		
 		# Add tooltip
