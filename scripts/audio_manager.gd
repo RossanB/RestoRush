@@ -35,17 +35,24 @@ func _ready():
 	# Load background music
 	load_background_music()
 	
-	# Start playing background music
-	play_background_music()
+	# Start playing background music (only if loaded successfully)
+	# For web exports, OGG format is recommended over MP3
+	if background_music:
+		play_background_music()
 
 func load_background_music():
 	# Load the background music file
-	var music_path = "res://sfx/1 Hour of Nintendo Cooking Music .mp3"
+	# Try OGG first (recommended for web), fallback to MP3
+	var music_path = "res://sfx/1 Hour of Nintendo Cooking Music .ogg"
+	if not ResourceLoader.exists(music_path):
+		music_path = "res://sfx/1 Hour of Nintendo Cooking Music .mp3"
+	
 	if ResourceLoader.exists(music_path):
 		background_music = load(music_path)
 		print("AudioManager: Background music loaded")
 	else:
-		print("AudioManager: WARNING - Background music file not found at: ", music_path)
+		print("AudioManager: WARNING - Background music file not found. Disabling background music.")
+		background_music = null
 
 func play_background_music():
 	if background_music and music_player:
@@ -53,6 +60,8 @@ func play_background_music():
 		music_player.play()
 		music_player.finished.connect(_on_music_finished)
 		print("AudioManager: Background music started")
+	else:
+		print("AudioManager: Background music not available (may be disabled for web compatibility)")
 
 func _on_music_finished():
 	# Loop the music
