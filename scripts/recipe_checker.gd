@@ -36,8 +36,13 @@ static func check_recipe(stored_items: Array[int], station_type: String) -> Dict
 					for item in items_array:
 						needed_items.append(item as int)
 			elif step["action"] == "cook":
-				# Single item to cook
-				needed_items.append(step["item"])
+				# Can be single item or multiple items to cook
+				if step.has("item"):
+					needed_items.append(step["item"])
+				elif step.has("items"):
+					var items_array: Array = step["items"] as Array
+					for item in items_array:
+						needed_items.append(item as int)
 			
 			# Check if stored items match needed items
 			if items_match(stored_items, needed_items):
