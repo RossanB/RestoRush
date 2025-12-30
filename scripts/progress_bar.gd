@@ -8,6 +8,7 @@ var max_progress: float = 1.0
 
 func _ready():
 	visible = false
+	z_index = 200  # Make sure progress bar is on top
 
 func set_progress(value: float):
 	progress = clamp(value, 0.0, max_progress)

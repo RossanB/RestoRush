@@ -5,6 +5,7 @@ var is_cooking: bool = false
 var cooking_time: float = 0.0
 var cooking_duration: float = 3.0  # 3 seconds to cook
 var progress_bar: Control = null
+var processing_ui: CanvasLayer = null
 
 func _ready():
 	super._ready()
@@ -41,12 +42,27 @@ func interact(player: Node):
 		print("Item placed in oven. Stored items: ", stored_items.size())
 		return
 	
-	# Player has no item - try to cook stored items
+	# Player has no item - show processing UI
 	if stored_items.is_empty():
 		return
 	
 	# If already cooking, can't interact
 	if is_cooking:
+		return
+	
+	# Show processing UI
+	get_or_create_processing_ui()
+	processing_ui.show_processing(stored_items, self, player, "Cook")
+
+func get_or_create_processing_ui():
+	if not processing_ui:
+		processing_ui = preload("res://scenes/processing_ui.tscn").instantiate()
+		get_tree().root.add_child(processing_ui)
+	return processing_ui
+
+func process_items(player: Node):
+	# Called from processing UI when "Cook" button is pressed
+	if stored_items.is_empty() or is_cooking:
 		return
 	
 	# Check if stored items match a recipe
