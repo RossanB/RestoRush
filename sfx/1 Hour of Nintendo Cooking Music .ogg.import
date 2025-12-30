@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ck2a83qu2ushj"
+path="res://.godot/imported/1 Hour of Nintendo Cooking Music .ogg-8986c2c9aa7f89cf79ce79bd0b516e5b.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/1 Hour of Nintendo Cooking Music .ogg"
+dest_files=["res://.godot/imported/1 Hour of Nintendo Cooking Music .ogg-8986c2c9aa7f89cf79ce79bd0b516e5b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

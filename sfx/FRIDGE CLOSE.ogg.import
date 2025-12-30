@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpjeyhhokamu7"
+path="res://.godot/imported/FRIDGE CLOSE.ogg-86cabe243b896303a559775b0b9d6ac4.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/FRIDGE CLOSE.ogg"
+dest_files=["res://.godot/imported/FRIDGE CLOSE.ogg-86cabe243b896303a559775b0b9d6ac4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

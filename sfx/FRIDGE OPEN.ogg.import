@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://br0gbmf7muhfh"
+path="res://.godot/imported/FRIDGE OPEN.ogg-7cb309f4b7b53863c17a62c0c4a5f009.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/FRIDGE OPEN.ogg"
+dest_files=["res://.godot/imported/FRIDGE OPEN.ogg-7cb309f4b7b53863c17a62c0c4a5f009.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
