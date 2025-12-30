@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
-const INTERACTION_DISTANCE = 10.0  # Reduced from 50.0 - player must be closer to interact
+const INTERACTION_DISTANCE = 30.0  # Distance to detect nearby stations
 
 var current_dir = "none"
 var held_item = -1  # -1 means no item (using int instead of enum for now)
@@ -137,10 +137,15 @@ func check_nearby_stations():
 
 func interact_with_station():
 	if nearby_station == null:
+		print("No nearby station to interact with")
 		return
+	
+	print("Interacting with station: ", nearby_station.name, " type: ", nearby_station.station_type if "station_type" in nearby_station else "unknown")
 	
 	if nearby_station.has_method("interact"):
 		nearby_station.interact(self)
+	else:
+		print("Station does not have interact method")
 
 func set_held_item(item_type):
 	held_item = item_type

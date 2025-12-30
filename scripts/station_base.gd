@@ -12,16 +12,16 @@ func _ready():
 	create_interact_prompt()
 
 func create_interact_prompt():
-	# Create a label to show "E" prompt
+	# Create a label to show "[E]" prompt with pixel-style font
 	interact_prompt = Label.new()
-	interact_prompt.text = "E"
-	interact_prompt.add_theme_font_size_override("font_size", 24)
+	interact_prompt.text = "[E]"
+	interact_prompt.add_theme_font_size_override("font_size", 12)  # Smaller pixel-style size
 	interact_prompt.add_theme_color_override("font_color", Color.WHITE)
 	interact_prompt.add_theme_color_override("font_outline_color", Color.BLACK)
-	interact_prompt.add_theme_constant_override("outline_size", 4)
+	interact_prompt.add_theme_constant_override("outline_size", 2)  # Smaller outline
 	interact_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	interact_prompt.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	interact_prompt.position = Vector2(-12, -30)  # Position above the station
+	interact_prompt.position = Vector2(-20, -25)  # Position above the station, adjusted for "[E]"
 	interact_prompt.visible = false
 	interact_prompt.z_index = 100  # Make sure it's on top
 	add_child(interact_prompt)
