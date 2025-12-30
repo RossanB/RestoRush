@@ -60,10 +60,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -120.0
-offset_right = 150.0
-offset_bottom = 120.0
+offset_left = -200.0
+offset_top = -180.0
+offset_right = 200.0
+offset_bottom = 180.0
 
 [node name="Title" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -77,8 +77,8 @@ theme_override_constants/outline_size = 2
 [node name="ItemGrid" type="GridContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 columns = 4
-theme_override_constants/v_separation = 5
-theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 8
 
 [node name="CloseButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2

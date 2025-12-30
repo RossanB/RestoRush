@@ -24,7 +24,7 @@ func populate_items():
 	# Create item buttons
 	for item_type in available_items:
 		var button = Button.new()
-		button.custom_minimum_size = Vector2(16, 16)
+		button.custom_minimum_size = Vector2(48, 48)
 		# Style the button
 		var button_style = StyleBoxFlat.new()
 		button_style.bg_color = Color(0.25, 0.25, 0.3, 1)
@@ -66,12 +66,12 @@ func populate_items():
 					texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 					texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 					texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-					# Fit exactly within 16x16 with 2px padding
+					# Fit within 48x48 with 6px padding for better visibility
 					texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-					texture_rect.offset_left = 2
-					texture_rect.offset_top = 2
-					texture_rect.offset_right = -2
-					texture_rect.offset_bottom = -2
+					texture_rect.offset_left = 6
+					texture_rect.offset_top = 6
+					texture_rect.offset_right = -6
+					texture_rect.offset_bottom = -6
 					button.add_child(texture_rect)
 		
 		# Add tooltip
