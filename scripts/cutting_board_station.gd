@@ -51,9 +51,28 @@ func interact(player: Node):
 	if is_processing:
 		return
 	
+	# Determine what action button to show based on stored items
+	var button_text = "Process"
+	# Check if we can determine the action from stored items
+	var recipe_check = RecipeChecker.check_recipe(stored_items, "cutting_board")
+	if recipe_check["success"]:
+		var result_item = recipe_check["result"]
+		if result_item == ItemTypes.ItemType.DOUGH:
+			button_text = "Mix"
+		elif can_chop_any_item():
+			button_text = "Chop"
+		elif can_assemble_any_item():
+			button_text = "Assemble"
+	else:
+		# Can't determine, but still show UI so player can try
+		if can_chop_any_item():
+			button_text = "Chop"
+		elif can_assemble_any_item():
+			button_text = "Assemble"
+	
 	# Show processing UI
 	get_or_create_processing_ui()
-	processing_ui.show_processing(stored_items, self, player, "Chop")
+	processing_ui.show_processing(stored_items, self, player, button_text)
 
 func get_or_create_processing_ui():
 	if not processing_ui:
