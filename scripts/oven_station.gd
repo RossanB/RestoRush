@@ -5,13 +5,11 @@ var is_cooking: bool = false
 var cooking_time: float = 0.0
 var cooking_duration: float = 3.0  # 3 seconds to cook
 var progress_bar: Control = null
-var error_ui: Node = null
 
 func _ready():
 	super._ready()
 	station_type = "oven"
 	create_progress_bar()
-	error_ui = ErrorMessage.get_error_ui()
 
 func _process(delta):
 	if is_cooking:
@@ -56,10 +54,7 @@ func interact(player: Node):
 	
 	if not recipe_check["success"]:
 		# Recipe doesn't exist - show error
-		if error_ui and error_ui.has_method("show_error_message"):
-			error_ui.show_error_message(recipe_check["error"])
-		else:
-			print(recipe_check["error"])
+		ErrorMessage.show_error(recipe_check["error"])
 		return
 	
 	# Recipe found - cook it

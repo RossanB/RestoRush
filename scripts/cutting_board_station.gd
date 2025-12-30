@@ -5,13 +5,11 @@ var is_processing: bool = false
 var processing_time: float = 0.0
 var processing_duration: float = 2.0  # 2 seconds to process
 var progress_bar: Control = null
-var error_ui: Node = null
 
 func _ready():
 	super._ready()
 	station_type = "cutting_board"
 	create_progress_bar()
-	error_ui = ErrorMessage.get_error_ui()
 
 func _process(delta):
 	if is_processing:
@@ -57,10 +55,7 @@ func interact(player: Node):
 	
 	if not recipe_check["success"]:
 		# Recipe doesn't exist - show error
-		if error_ui and error_ui.has_method("show_error_message"):
-			error_ui.show_error_message(recipe_check["error"])
-		else:
-			print(recipe_check["error"])
+		ErrorMessage.show_error(recipe_check["error"])
 		return
 	
 	# Recipe found - process it

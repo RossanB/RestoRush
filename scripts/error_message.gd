@@ -63,7 +63,7 @@ static func get_error_ui() -> Node:
 	return error_ui
 
 # Static function to show error message from anywhere
-static func show(message: String):
+static func show_error(message: String):
 	var ui = get_error_ui()
 	if ui and ui.has_method("show_error_message"):
 		ui.show_error_message(message)
