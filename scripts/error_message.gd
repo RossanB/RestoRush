@@ -34,7 +34,7 @@ func _ready():
 	display_timer.timeout.connect(_on_timer_timeout)
 	add_child(display_timer)
 
-func show_error(message: String):
+func display_error(message: String):
 	error_label.text = message
 	error_label.visible = true
 	display_timer.start()
@@ -42,10 +42,6 @@ func show_error(message: String):
 func _on_timer_timeout():
 	error_label.visible = false
 	error_label.text = ""
-
-# Function to show error from anywhere (call on instance)
-func show_error_message(message: String):
-	show_error(message)
 
 # Static helper to get or create error message UI
 static func get_error_ui() -> Node:
@@ -65,6 +61,6 @@ static func get_error_ui() -> Node:
 # Static function to show error message from anywhere
 static func show_error(message: String):
 	var ui = get_error_ui()
-	if ui and ui.has_method("show_error_message"):
-		ui.show_error_message(message)
+	if ui and ui.has_method("display_error"):
+		ui.display_error(message)
 
