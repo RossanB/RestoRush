@@ -29,12 +29,19 @@ var customers: Array[Node] = []  # Customers currently at this table
 func _ready():
 	add_to_group("tables")
 	
-	# If seat positions not set, generate default positions based on table size
+	# Always ensure arrays are initialized in _ready
+	# Generate default positions first
 	if seat_positions.is_empty():
 		generate_default_seat_positions()
 	
-	# Apply easy-edit facing directions if arrays are empty
+	# Then apply facing directions (this will also check and generate if needed)
 	apply_easy_edit_facing()
+	
+	# Final safety check - ensure arrays are synchronized
+	if seat_positions.size() != seat_facing_directions.size():
+		print("Table ", name, ": WARNING - Arrays out of sync in _ready. Regenerating...")
+		generate_default_seat_positions()
+		apply_easy_edit_facing()
 
 func generate_default_seat_positions():
 	# Generate positions around the table based on size
@@ -134,12 +141,18 @@ func get_customer_facing(customer: Node) -> String:
 
 func get_customer_seat_index(customer: Node) -> int:
 	# Find which seat index a customer is at
+	# Ensure arrays are initialized
+	if seat_positions.is_empty():
+		generate_default_seat_positions()
+	
 	if customer not in customers:
 		return -1
 	
 	# Find the customer's position and match it to a seat
 	var customer_pos = customer.global_position
 	for i in range(seat_positions.size()):
+		if i >= seat_positions.size():
+			break
 		var seat_pos = global_position + seat_positions[i]
 		if customer_pos.distance_to(seat_pos) < 10.0:  # Within 10 pixels
 			return i
@@ -188,6 +201,11 @@ func apply_easy_edit_facing():
 	# Apply the easy-edit facing directions to the array
 	# This makes it easy to edit individual seat facing in the inspector
 	# Always apply, even if positions were manually set
+	
+	# First ensure seat positions exist
+	if seat_positions.is_empty():
+		generate_default_seat_positions()
+	
 	match table_size:
 		TableSize.TWO_SEATER:
 			# Ensure we have 2 seats, generate if needed
@@ -197,6 +215,12 @@ func apply_easy_edit_facing():
 			seat_facing_directions.clear()
 			seat_facing_directions.append(left_seat_facing)
 			seat_facing_directions.append(right_seat_facing)
+			# Ensure arrays are synchronized
+			if seat_facing_directions.size() != seat_positions.size():
+				generate_default_seat_positions()
+				seat_facing_directions.clear()
+				seat_facing_directions.append(left_seat_facing)
+				seat_facing_directions.append(right_seat_facing)
 			print("Table ", name, ": Applied facing directions - Left: ", left_seat_facing, " Right: ", right_seat_facing)
 		TableSize.FOUR_SEATER:
 			# Ensure we have 4 seats, generate if needed
@@ -208,3 +232,11 @@ func apply_easy_edit_facing():
 			seat_facing_directions.append(top_right_facing)
 			seat_facing_directions.append(bottom_left_facing)
 			seat_facing_directions.append(bottom_right_facing)
+			# Ensure arrays are synchronized
+			if seat_facing_directions.size() != seat_positions.size():
+				generate_default_seat_positions()
+				seat_facing_directions.clear()
+				seat_facing_directions.append(top_left_facing)
+				seat_facing_directions.append(top_right_facing)
+				seat_facing_directions.append(bottom_left_facing)
+				seat_facing_directions.append(bottom_right_facing)
